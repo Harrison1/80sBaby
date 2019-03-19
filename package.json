@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "React component library",
   "main": "index.js",
+  "repository": "https://github.com/Harrison1/80sBaby",
   "author": "Harrison McGuire",
   "license": "MIT",
   "dependencies": {
