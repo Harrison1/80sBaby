@@ -30,13 +30,19 @@ const SButton = styled(`button`)<ButtonProps>`
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
   border: none;
-  border-radius: 3rem;
+  border-radius: 999rem;
   cursor: pointer;
   font-size: ${props => props.fontSize ? props.fontSize : '1rem'};
   padding: 4px;
+  animation: ${gradient} 15s ease infinite;
+  animation-play-state: paused;
   &:hover {
-    animation: ${gradient} 15s ease infinite;
+    animation-play-state: running;
     will-change: background;
+    div {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
   }
   &:active, 
   &:focus, 
@@ -47,15 +53,16 @@ const SButton = styled(`button`)<ButtonProps>`
   }
   div {
     background: #fff;
-    border-radius: 3rem;
+    border-radius: 999rem;
     padding: 10px 20px;
+    transition: background 0.5s ease, color 0.5s ease;
   }
 `
 const noop = () => {}
 
 const Button = (props: ButtonProps) => 
   <SButton
-    aria-label={props.ariaLabel}
+    ariaLabel={props.ariaLabel ? props.ariaLabel : props.name}
     autoFocus={props.autoFocus}
     disabled={props.disabled}
     name={props.name}
@@ -63,7 +70,7 @@ const Button = (props: ButtonProps) =>
     type={props.type}
     value={props.value}
     primary={props.primary ? true : false}
-    fontSize='10px'
+    fontSize={props.fontSize}
   >
     <div>
       { props.children }
