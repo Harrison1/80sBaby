@@ -1,8 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from './Button';
 
-storiesOf('Button')
+const stories = storiesOf('Button', module);
+
+stories
 	.add('with text', () => (
 		<Button>Hello Galaxy</Button>
 	))

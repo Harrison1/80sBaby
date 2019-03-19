@@ -1,5 +1,18 @@
-import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import * as React from 'react';
+import styled, { keyframes } from '../../utils/styled-components'
+
+interface ButtonProps {
+  autoFocus?: boolean;
+  ariaLabel?: string;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  fontSize?: string;
+  name?: string;
+  primary?: boolean;
+  onClick?: () => void;
+  type?: string;
+  value?: string;
+}
 
 const gradient = keyframes`
   0% {
@@ -13,7 +26,7 @@ const gradient = keyframes`
   }
 `
 
-const SButton = styled.button`
+const SButton = styled(`button`)<ButtonProps>`
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
   border: none;
@@ -37,23 +50,16 @@ const SButton = styled.button`
     border-radius: 3rem;
     padding: 10px 20px;
   }
-  ${props => props.primary && css`
-    background: white;
-    color: palevioletred;
-  `}
 `
+const noop = () => {}
 
-const SDiv = styled.div`
-
-`
-
-const Button = props => 
+const Button = (props: ButtonProps) => 
   <SButton
     aria-label={props.ariaLabel}
     autoFocus={props.autoFocus}
     disabled={props.disabled}
     name={props.name}
-    onClick={props.onClick}
+    onClick={!props.disabled ? props.onClick : noop}
     type={props.type}
     value={props.value}
     primary={props.primary ? true : false}
