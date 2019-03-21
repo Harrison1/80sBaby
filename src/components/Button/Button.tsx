@@ -58,6 +58,7 @@ const SButton = styled(`button`)<ButtonProps>`
     transition: background 0.5s ease, color 0.5s ease;
   }
 `
+
 const noop = () => {}
 
 const Button = (props: ButtonProps) => 
