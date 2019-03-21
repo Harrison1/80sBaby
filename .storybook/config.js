@@ -32,7 +32,7 @@ addParameters({
 addDecorator(withA11y)
 
 // automatically import all files in the components folder ending in *.stories.tsx
-const req = require.context('../src/components', true, /.stories.tsx$/)
+const req = require.context('../src/', true, /.stories.tsx$/)
 
 function loadStories() {
   req.keys().forEach(req)
