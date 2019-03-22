@@ -2,8 +2,8 @@
   "name": "80sBaby",
   "version": "1.0.0",
   "description": "An 80s inpired retro react component library made with typescript",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "core/index.js",
+  "types": "core/index.d.ts",
   "repository": "https://github.com/Harrison1/80sBaby",
   "author": "Harrison McGuire",
   "license": "MIT",
@@ -16,13 +16,11 @@
     "Library"
   ],
   "files": [
-    "lib/**/*"
+    "core/**/*"
   ],
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.3",
-    "my-awesome-greeter": "^1.0.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.1.3"
