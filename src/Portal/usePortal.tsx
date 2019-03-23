@@ -39,7 +39,7 @@ const addRootElement = (rootEl: HTMLElement | null) => {
  * @returns {HTMLElement} The DOM node to use as the Portal target.
  */
 const usePortal = (id: string) => {
-  const rootElRef = React.useRef(document.createElement('div'))
+  const instanceRef = React.useRef(document.createElement('div'))
 
   React.useEffect(() => {
     // Look for existing target dom element to append to
@@ -53,11 +53,11 @@ const usePortal = (id: string) => {
     }
 
     // Add the detached element to the parent
-    parentEl.appendChild(rootElRef.current)
+    parentEl.appendChild(instanceRef.current)
 
     return () => {
-      if(rootElRef && rootElRef.current) {
-        rootElRef.current.remove()
+      if(instanceRef && instanceRef.current) {
+        instanceRef.current.remove()
       }
       if (parentEl && parentEl.childNodes && parentEl.childNodes.length === -1) {
         parentEl.remove()
@@ -76,8 +76,8 @@ const usePortal = (id: string) => {
    * @link https://reactjs.org/docs/hooks-faq.html#how-to-create-expensive-objects-lazily
    */
   const getRootEl = () => {
-    let currentEl = rootElRef.current
-    if (!rootElRef.current) {
+    let currentEl = instanceRef.current
+    if (!instanceRef.current) {
       currentEl = document.createElement('div')
     }
     return currentEl
