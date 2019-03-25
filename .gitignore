@@ -61,4 +61,4 @@ typings/
 .next
 
 # auto generated typescript files
-/lib
+/core
