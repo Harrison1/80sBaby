@@ -12,7 +12,7 @@ const BlackBG = styled.div`
   width: 100%;
   height: 100%;
 `
-
+/* from css tricks */
 const DBox = styled.div`
   background: #fff;
   border-radius: 1rem;
