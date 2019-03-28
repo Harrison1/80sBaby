@@ -1,8 +1,8 @@
 /** original JS code courtesy of Jay Freestone https://www.jayfreestone.com/writing/react-portals-with-hooks/ */
 
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
-import usePortal from './usePortal';
+import * as React from 'react'
+import * as ReactDom from 'react-dom'
+import usePortal from './usePortal'
 
 /**
  * @example
@@ -12,18 +12,15 @@ import usePortal from './usePortal';
  */
 
 interface PortalProps {
-  children: React.ReactNode;
-  id: string;
+  children: React.ReactNode
+  id: string
 }
 
 const Portal = (props: PortalProps) => {
   const domNode = usePortal(props.id)
   console.log(props.children)
-  if(domNode) {
-    return ReactDom.createPortal(
-      props.children,
-      domNode
-    )
+  if (domNode) {
+    return ReactDom.createPortal(props.children, domNode)
   }
   return null
 }

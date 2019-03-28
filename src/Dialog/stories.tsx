@@ -7,8 +7,4 @@ const stories = storiesOf('Dialog', module)
 
 stories.addDecorator(withKnobs)
 
-stories
-	.add('Dialog', () => (
-    <Dialog />
-	))
-  
+stories.add('Dialog', () => <Dialog />)

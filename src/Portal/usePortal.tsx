@@ -14,7 +14,7 @@ const createRootElement = (id: string) => {
 
 /**
  * Appends element as last child of body.
- * @param {HTMLElement} rootEl 
+ * @param {HTMLElement} rootEl
  */
 const addRootElement = (rootEl: HTMLElement | null) => {
   /** 
@@ -23,7 +23,7 @@ const addRootElement = (rootEl: HTMLElement | null) => {
   */
   document.body.insertBefore(
     rootEl!,
-    document.body.lastElementChild!.nextElementSibling,
+    document.body.lastElementChild!.nextElementSibling
   )
 }
 
@@ -56,10 +56,14 @@ const usePortal = (id: string) => {
     parentEl.appendChild(instanceRef.current)
 
     return () => {
-      if(instanceRef && instanceRef.current) {
+      if (instanceRef && instanceRef.current) {
         instanceRef.current.remove()
       }
-      if (parentEl && parentEl.childNodes && parentEl.childNodes.length === -1) {
+      if (
+        parentEl &&
+        parentEl.childNodes &&
+        parentEl.childNodes.length === -1
+      ) {
         parentEl.remove()
       }
     }

@@ -2,16 +2,16 @@ import * as React from 'react'
 import styled, { keyframes } from '../utils/styled-components'
 
 interface ButtonProps {
-  autoFocus?: boolean;
-  ariaLabel?: string;
-  children?: React.ReactNode;
-  disabled?: boolean;
-  fontSize?: string;
-  name?: string;
-  primary?: boolean;
-  onClick?: () => void;
-  type?: string;
-  value?: string;
+  autoFocus?: boolean
+  ariaLabel?: string
+  children?: React.ReactNode
+  disabled?: boolean
+  fontSize?: string
+  name?: string
+  primary?: boolean
+  onClick?: () => void
+  type?: string
+  value?: string
 }
 
 const gradient = keyframes`
@@ -27,12 +27,12 @@ const gradient = keyframes`
 `
 
 const SButton = styled(`button`)<ButtonProps>`
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   border: none;
   border-radius: 999rem;
   cursor: pointer;
-  font-size: ${props => props.fontSize ? props.fontSize : '1rem'};
+  font-size: ${props => (props.fontSize ? props.fontSize : '1rem')};
   padding: 4px;
   animation: ${gradient} 15s ease infinite;
   animation-play-state: paused;
@@ -44,8 +44,8 @@ const SButton = styled(`button`)<ButtonProps>`
       color: #fff;
     }
   }
-  &:active, 
-  &:focus, 
+  &:active,
+  &:focus,
   &:visited {
     border-color: #80bdff;
     outline: 0;
@@ -61,7 +61,7 @@ const SButton = styled(`button`)<ButtonProps>`
 
 const noop = () => {}
 
-const Button = (props: ButtonProps) => 
+const Button = (props: ButtonProps) => (
   <SButton
     ariaLabel={props.ariaLabel ? props.ariaLabel : props.name}
     autoFocus={props.autoFocus}
@@ -73,9 +73,8 @@ const Button = (props: ButtonProps) =>
     primary={props.primary ? true : false}
     fontSize={props.fontSize}
   >
-    <div>
-      { props.children }
-    </div>
+    <div>{props.children}</div>
   </SButton>
+)
 
 export default Button
