@@ -10,7 +10,7 @@ interface ButtonProps {
   name?: string
   primary?: boolean
   onClick?: () => void
-  type?: string
+  type?: 'button' | 'reset' | 'submit' | undefined
   value?: string
 }
 

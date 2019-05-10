@@ -1,9 +1,51 @@
 import * as React from 'react'
 import Portal from '../Portal'
-import styled from '../utils/styled-components'
+import styled, { keyframes } from '../utils/styled-components'
 
-const BlackBG = styled.div`
-  background: rgba(0, 0, 0, 0.5);
+interface DialogProps {
+  aClass?: boolean
+  children?: React.ReactNode
+  display?: boolean
+  hide?: boolean
+  onClick?: () => void
+  slideDown?: boolean
+}
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+// const slideUp = keyframes`
+//   0% {
+//     opacity: 0;
+//     transform: translateY(20%);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0%);
+//   }
+// `
+
+const slideDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+`
+
+const BlackBG = styled(`div`)<DialogProps>`
+  align-items: center;
+  background: rgba(144, 9, 108, 0.5);
+  display: ${props => props.hide ? 'none' : 'grid'};
   justify-content: center;
   justify-items: center;
   position: fixed;
@@ -11,12 +53,18 @@ const BlackBG = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: ${props => props.aClass ? 0 : 1};
+  transition: opacity 0.5s ease-in-out;
+  animation: ${fadeIn} 0.25s ease-in-out;
 `
+
 /* from css tricks */
-const DBox = styled.div`
+const DBox = styled(`div`)<DialogProps>`
   background: #fff;
   border-radius: 1rem;
   display: block;
+  height: fit-content;
+  padding: 1rem;
 
   /* Probably need media queries here */
   /* width: 600px; */
@@ -25,28 +73,72 @@ const DBox = styled.div`
   /* height: 400px; */
   max-height: 100%;
 
-  position: fixed;
+  /* position: fixed; */
 
   z-index: 100;
 
-  left: 50%;
-  top: 50%;
+  /* left: 50%;
+  top: 50%; */
 
   /* Use this for centering if unknown width/height */
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 
   /* If known, negative margins are probably better (less chance of blurry text). */
   /* margin: -200px 0 0 -200px; */
 
-  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+  // box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 0px 6px rgba(0, 0, 0, 0.3);
+  opacity: ${props => props.aClass ? 0 : 1};
+  transform: ${props => props.aClass ? 'translateY(-20%)' : 'translateY(0%)'};
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  animation: ${slideDown} 0.5s ease-in-out;
 `
 
-const Dialog = () => (
-  <Portal id="dialog-box">
-    <BlackBG>
-      <DBox>Hello Galaxy</DBox>
-    </BlackBG>
-  </Portal>
-)
+const Dialog = (props: DialogProps) => {
+  const [show, setShow] = React.useState(false)
+  const [dClass, setDClass] = React.useState(false)
+  const [canClick, setCanClick] = React.useState(true)
+  const [hide, setHide] = React.useState(false)
+
+  const toggleClass = () => {
+    if(canClick && props.onClick) {
+        props.onClick()
+    }
+  }
+
+  React.useEffect(() => {
+      if(props.display) {
+        setShow(true)
+        setHide(false)
+        setCanClick(true)
+      } else {
+        setCanClick(false)
+        setDClass(!dClass)
+        setTimeout(() => {
+          setHide(true)
+        }, 500)
+      }
+    }
+  )
+
+  return (
+    show
+      ? <Portal id="dialog-box">
+          <BlackBG
+            onClick={ toggleClass }
+            aClass={ dClass }
+            hide={ hide }
+          >
+            <DBox 
+              slideDown={ props.slideDown }
+              aClass={ dClass }
+            >
+              {props.children}
+            </DBox>
+          </BlackBG>
+        </Portal>
+      : null
+  )
+}
 
 export default Dialog
