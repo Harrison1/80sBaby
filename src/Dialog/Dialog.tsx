@@ -53,7 +53,7 @@ const BlackBG = styled(`div`)<DialogProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: ${props => props.aClass ? 0 : 1};
+  opacity: ${props => props.aClass ? 1 : 0};
   transition: opacity 0.5s ease-in-out;
   animation: ${fadeIn} 0.25s ease-in-out;
 `
@@ -88,50 +88,70 @@ const DBox = styled(`div`)<DialogProps>`
 
   // box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
   box-shadow: 0 0 0px 6px rgba(0, 0, 0, 0.3);
-  opacity: ${props => props.aClass ? 0 : 1};
-  transform: ${props => props.aClass ? 'translateY(-20%)' : 'translateY(0%)'};
+  opacity: ${props => props.aClass ? 1 : 0};
+  transform: ${props => props.aClass ? 'translateY(0%)' : 'translateY(-20%)'};
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   animation: ${slideDown} 0.5s ease-in-out;
 `
 
 const Dialog = (props: DialogProps) => {
   const [show, setShow] = React.useState(false)
-  const [dClass, setDClass] = React.useState(false)
-  const [canClick, setCanClick] = React.useState(true)
-  const [hide, setHide] = React.useState(false)
+  const [firstRender, setFirstRender] = React.useState(false)
+  const [aClass, setAClass] = React.useState(false)
+  const [canClick, setCanClick] = React.useState(false)
+  const [hide, setHide] = React.useState(true)
 
-  const toggleClass = () => {
+  const toggleDialog = () => {
     if(canClick && props.onClick) {
-        props.onClick()
+      if(!firstRender) {
+        setFirstRender(true)
+      }
+      props.onClick()
     }
   }
 
+  const displayDialog = () => {
+    setAClass(true)
+    setCanClick(true)    
+    setHide(false)
+  }
+
+  
+  const hideDialog = () => {
+    setAClass(false)
+    setCanClick(false)
+    setTimeout(() => {
+      setHide(true)
+    }, 500)
+  }
+
   React.useEffect(() => {
-      if(props.display) {
-        setShow(true)
-        setHide(false)
-        setCanClick(true)
-      } else {
-        setCanClick(false)
-        setDClass(!dClass)
-        setTimeout(() => {
-          setHide(true)
-        }, 500)
-      }
+    if(props.display && !firstRender) {
+      setShow(true)
     }
-  )
+
+    if(firstRender) {
+      if(props.display) {
+        displayDialog()
+      } else {
+        hideDialog()
+      }
+    } else {
+      displayDialog()
+    }
+  })
 
   return (
     show
       ? <Portal id="dialog-box">
           <BlackBG
-            onClick={ toggleClass }
-            aClass={ dClass }
+            onClick={ toggleDialog }
+            aClass={ aClass }
             hide={ hide }
           >
             <DBox 
               slideDown={ props.slideDown }
-              aClass={ dClass }
+              aClass={ aClass }
             >
               {props.children}
             </DBox>
