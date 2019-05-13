@@ -3,6 +3,8 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import Dialog from './Dialog'
 import Button from '../Button'
+import Title from '../Title'
+import GlobalStyles from '../GlobalStyles'
 
 const stories = storiesOf('Dialog', module)
 
@@ -17,6 +19,7 @@ const SimpleDialog = () => {
   
   return (
     <>
+      <GlobalStyles />
       <Button
         aria-label='show dialog box'
         fontSize='1rem'
@@ -31,7 +34,7 @@ const SimpleDialog = () => {
         onClick={ toggleDialog }
         slideDown={true}
       >
-        <h3>Hello Jello</h3>
+        <Title tag='h3' text='Hello Jello' />
         <p>We have a lot more jello</p>
       </Dialog>
     </>
