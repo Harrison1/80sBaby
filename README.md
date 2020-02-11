@@ -2,6 +2,6 @@
 React component library
 
 ### Get Started
-`yarn`
+`npm i`
 
-`yarn storybook`
+`npm run storybook`
