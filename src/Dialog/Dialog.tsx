@@ -42,7 +42,7 @@ const slideDown = keyframes`
   }
 `
 
-const BlackBG = styled(`div`)<DialogProps>`
+const BlackBG = styled.div<DialogProps>`
   align-items: center;
   background: rgba(144, 9, 108, 0.5);
   display: ${props => props.hide ? 'none' : 'grid'};
@@ -59,7 +59,7 @@ const BlackBG = styled(`div`)<DialogProps>`
 `
 
 /* from css tricks */
-const DBox = styled(`div`)<DialogProps>`
+const DBox = styled.div<DialogProps>`
   background: #fff;
   border-radius: 1rem;
   display: block;
