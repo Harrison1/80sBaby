@@ -86,7 +86,6 @@ const DBox = styled.div<DialogProps>`
   /* If known, negative margins are probably better (less chance of blurry text). */
   /* margin: -200px 0 0 -200px; */
 
-  // box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
   box-shadow: 0 0 0px 6px rgba(0, 0, 0, 0.3);
   opacity: ${props => props.aClass ? 1 : 0};
   transform: ${props => props.aClass ? 'translateY(0%)' : 'translateY(-20%)'};
@@ -109,6 +108,10 @@ const Dialog = (props: DialogProps) => {
       props.onClick()
     }
   }
+
+  // const myClick = (e: MouseEvent) => {
+  //   e.stopPropagation()
+  // }
 
   const displayDialog = () => {
     setAClass(true)
@@ -149,12 +152,16 @@ const Dialog = (props: DialogProps) => {
             aClass={ aClass }
             hide={ hide }
           >
-            <DBox 
-              slideDown={ props.slideDown }
-              aClass={ aClass }
+            <div
+              onClick={ (e) => e.stopPropagation() }
             >
-              {props.children}
-            </DBox>
+              <DBox 
+                slideDown={ props.slideDown }
+                aClass={ aClass }
+              >
+                {props.children}
+              </DBox>
+            </div>
           </BlackBG>
         </Portal>
       : null
