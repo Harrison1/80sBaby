@@ -109,10 +109,6 @@ const Dialog = (props: DialogProps) => {
     }
   }
 
-  // const myClick = (e: MouseEvent) => {
-  //   e.stopPropagation()
-  // }
-
   const displayDialog = () => {
     setAClass(true)
     setCanClick(true)    
