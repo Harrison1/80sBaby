@@ -5,3 +5,5 @@ React component library
 `npm i`
 
 `npm run storybook`
+
+[http://localhost:6006/](http://localhost:6006/)
