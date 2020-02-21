@@ -149,7 +149,7 @@ const Dialog = (props: DialogProps) => {
             hide={ hide }
           >
             <div
-              onClick={ (e) => e.stopPropagation() }
+              onClick={ e => e.stopPropagation() }
             >
               <DBox 
                 slideDown={ props.slideDown }
