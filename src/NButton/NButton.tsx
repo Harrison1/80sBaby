@@ -9,13 +9,13 @@ interface NButtonProps {
 
 const SNButton = styled.button<NButtonProps>`
   border: none;
-  border-radius: 50%;
+  border-radius: 50px;
   background: #dfdbdd;
   box-shadow: ${props => !props.clicked 
-    ? `28px 28px 56px #bebabc, 
-      -28px -28px 56px #fffcfe`  
-    : `inset 28px 28px 56px #bebabc, 
-      inset -28px -28px 56px #fffcfe`
+    ? `20px 20px 60px #bebabc, 
+      -20px -20px 60px #fffcfe`  
+    : `inset 20px 20px 60px #bebabc, 
+      inset -20px -20px 60px #fffcfe`
   };
   width: 280px;
   height: 280px;
