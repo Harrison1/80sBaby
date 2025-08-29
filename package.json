@@ -36,7 +36,7 @@
     "@storybook/addon-links": "5.3.13",
     "@storybook/addon-viewport": "5.3.13",
     "@storybook/addons": "5.3.13",
-    "@storybook/react": "5.3.13",
+    "@storybook/react": "9.1.1",
     "@types/jest": "25.1.2",
     "@types/react-test-renderer": "16.9.2",
     "@types/storybook__addon-a11y": "5.1.2",
